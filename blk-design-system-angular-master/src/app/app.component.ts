@@ -1,6 +1,16 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+
 import noUiSlider from "nouislider";
 import { Router } from '@angular/router';
+import {
+  Component,
+  OnInit,
+  Renderer2,
+  HostListener,
+  OnDestroy,
+  Inject
+} from "@angular/core";
+import { Location } from "@angular/common";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
   selector: "app-root",
@@ -9,19 +19,34 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit, OnDestroy {
   isCollapsed = true;
-  focus;
-  focus1;
-  focus2;
-  date = new Date();
-  pagination = 3;
-  pagination1 = 1;
+  
   constructor(
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2,
+    public location: Location,
+    @Inject(DOCUMENT) document
   ) {}
   scrollToDownload(element: any) {
     element.scrollIntoView({ behavior: "smooth" });
   }
+  @HostListener("window:scroll", ["$event"])
+  onWindowScroll(e) {
+    if (window.pageYOffset > 100) {
+      var element = document.getElementById("navbar-top");
+      if (element) {
+        element.classList.remove("navbar-transparent");
+        element.classList.add("bg-danger");
+      }
+    } else {
+      var element = document.getElementById("navbar-top");
+      if (element) {
+        element.classList.add("navbar-transparent");
+        element.classList.remove("bg-danger");
+      }
+    }
+  }
   ngOnInit() {
+    this.onWindowScroll(event);
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("index-page");
 

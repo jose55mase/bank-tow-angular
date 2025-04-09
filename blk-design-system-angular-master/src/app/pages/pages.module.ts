@@ -43,6 +43,7 @@ import { UserPage } from "./user/user.component";
     AlertModule.forRoot(),
     BsDatepickerModule.forRoot(),
     CarouselModule.forRoot(),
+    ModalModule.forRoot(),
     
   ],
   declarations: [
@@ -55,7 +56,7 @@ import { UserPage } from "./user/user.component";
     IndexComponent,
     ProfilepageComponent,
     RegisterpageComponent,
-    LandingpageComponent, LoginPage
+    LandingpageComponent, LoginPage, UserPage
   ],
   providers: []
 })

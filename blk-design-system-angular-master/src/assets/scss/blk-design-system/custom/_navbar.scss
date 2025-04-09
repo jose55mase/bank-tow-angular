@@ -50,8 +50,9 @@
   }
 
   &.navbar-transparent {
-    background: $transparent-bg !important;
-    padding-top: 25px;
+    //background: $twitter !important;
+    background: rgb(151,151,151);
+    background: linear-gradient(90deg, rgba(151,151,151,0.6979166666666667) 1%, rgba(89,137,209,1) 21%, rgba(151,151,151,0.9472163865546218) 48%, rgba(151,151,151,0.9023984593837535) 73%, rgba(87,138,213,0.8631827731092436) 90%);padding-top: 25px;
   }
 
   &.bg-white {
@@ -110,7 +111,7 @@
   }
 
   &.bg-danger {
-    background-color: $danger !important;
+    background-color: $primary !important;
   }
 
   &.bg-banckThemBLue {

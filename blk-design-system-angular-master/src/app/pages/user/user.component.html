@@ -1,45 +1,165 @@
-<div class="main">
-  <div class="row">
-    <div class="col">
-      <div class="section pt-8">
-        <div class="container">
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="text-center">#</th>
-                <th>Nombre</th>
-                <th>Pais</th>
-                <th >Monto</th>
-                <th>Plataforma</th>
-                <th class="text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-              <tr>
-                <td class="text-center">2</td>
-                <td>John Doe</td>
-                <td>Colombia</td>
+<div class="page-header header-filter">
+  <div class="squares square1"></div>
+  <div class="squares square2"></div>
+  <div class="squares square3"></div>
+  <div class="squares square4"></div>
+  <div class="squares square5"></div>
+  <div class="squares square6"></div>
+  <div class="squares square7"></div>
+  <div class="container">
+      <div class="title">
+        <h3></h3>
+      </div>
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-12 col-md-12">
+          <div class="section section-tabs">
+            <div class="container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center">#</th>
+                    <th>Nombre</th>
+                    <th>Pais</th>
+                    <th >Monto</th>
+                    <th>Plataforma</th>
+                    <th>Estado</th>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td class="text-center">2</td>
+                    <td>John Doe</td>
+                    <td>Colombia</td>
+                    <td >$ 89,241</td>
+                    <td>Cripto algo testing</td>
+                    <td class="color-text">GESTIONADO</td>
+                    <td class="td-actions text-right">
+                      <button 
+                        type="button" 
+                        rel="tooltip" 
+                        class="btn btn-neutral btn-sm btn-round btn-icon"
+                        data-target="#myModal"
+                        [routerLink]="['/profile']"
+                        >
+                        <i class="tim-icons icon-single-02"></i>
+                      </button>
+                      <button 
+                        type="button" 
+                        rel="tooltip" 
+                        class="btn btn-warning btn-sm btn-round btn-icon"
+                        data-target="#myModal"
+                        (click)="myModal.show()"
+                        >
+                        <i class="tim-icons icon-pencil"></i>
+                      </button>
+                      <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
+                        <i class="tim-icons icon-check-2"></i>
+                      </button>
+                      <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">
+                        <i class="tim-icons icon-simple-remove"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>      
+      </div>
+    </div>
+</div>  
+
+
+
+
+PENDINTE rojo
+GESTIONADO verde
+EN PROCESO amarillo
+
+<div
+    aria-hidden="true"
+    aria-labelledby="myModalLabel"
+    bsModal
+    class="modal fade modal-black"
+    #myModal="bs-modal"
+    id="myModal"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <button
+            aria-hidden="true"
+            class="close"
+            data-dismiss="modal"
+            type="button"
+            (click)="myModal.hide()"
+          >
+            <i class="tim-icons icon-simple-remove"> </i>
+          </button>
+          <div class="card-avatar">
+            <a href="javascript:void(0)">
+              <!--img  src="http://localhost:8081/api/user/uploads/img/{{data.foto}}"  width="300" height="120" class="img" /-->
                 
-                <td >$ 89,241</td>
-                <td>Cripto algo testing</td>
-                <td class="td-actions text-right">
-                  <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-round btn-icon">
-                    <i class="tim-icons icon-single-02"></i>
-                  </button>
-                  <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
-                    <i class="tim-icons icon-settings-gear-63"></i>
-                  </button>
-                  <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">
-                    <i class="tim-icons icon-simple-remove"></i>
-                  </button>
-                </td>
-              </tr>
-             
-            </tbody>
-          </table>
+            </a>
+          </div>
+          <div class="modal-profile">
+            <i class="tim-icons icon-single-02"> </i>
+          </div>
+        </div>
+        <div class="modal-body">
+          
+
+
+
+
+          <form>
+           
+              <div class="form-row">
+                <div class="col">
+                  <input type="text" class="form-control" id="InputName" aria-describedby="campo de texto para el nombre" placeholder="Nombre completo">
+                  <input type="text" class="form-control" id="InputContry" aria-describedby="Pais" placeholder="Pais">
+                  <input type="text" class="form-control" id="InputPlataform" aria-describedby="Plataforma" placeholder="Plataforma">
+                </div>
+                <div class="col">
+                  <input type="email" class="form-control" id="InputEmail" aria-describedby="Campo para el correo" placeholder="Correo">
+                  <input type="text" class="form-control" id="InputAmount" aria-describedby="Cantidad de dinero" placeholder="Dinero en dolares">
+                </div>
+                <p>
+                  Far far away, behind the word mountains, far from the countries
+                  Vokalia and Consonantia, there live the blind texts. Separated
+                  they live in Bookmarksgrove right at the coast of the Semantics, a
+                  large language ocean. A small river named Duden flows by their
+                  place and supplies it with the necessary regelialia. It is a
+                  paradisematic country, in which roasted parts of sentences fly
+                  into your mouth.
+                </p>
+              </div>
+            
+          </form>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" type="button">Guardar</button>
+          <button class="btn btn-danger" data-dismiss="modal" type="button" (click)="myModal.hide()">
+            Cerrar
+          </button>
         </div>
       </div>
     </div>
   </div>
-</div>
+
