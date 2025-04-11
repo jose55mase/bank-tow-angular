@@ -1,4 +1,3 @@
-
 <nav
   class="navbar navbar-expand-lg fixed-top navbar-transparent"
   color-on-scroll="100"
@@ -81,16 +80,16 @@
   <div class="squares square6"></div>
   <div class="squares square7"></div>
   <div class="container">
-    <div class="title">
-      <h3>Usuarios</h3>
-    </div>
-    <div class="row justify-content-md-center">
-      <div class="text-center col-md-12 col-lg-8">
-        <h2 class="title">
-          Gestiona los usuarios
-        </h2>
+      <div class="title">
+        <h3>Transacciones</h3>
       </div>
-    </div>
+      <div class="row justify-content-md-center">
+        <div class="text-center col-md-12 col-lg-8">
+          <h2 class="title">
+            Gestiona las transacciones
+          </h2>
+        </div>
+      </div>
       <div class="row justify-content-between align-items-center">
         <div class="col-lg-12 col-md-12">
           <div class="section section-tabs">
@@ -98,24 +97,39 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th class="text-center">#</th>
-                    <th>Nombre</th>
-                    <th>Pais</th>
-                    <th >Monto</th>
-                    <th>Estado</th>
-                    <th *ngIf="this.dataUser.rols[0].name == 'ROLE_ADMIN'"  class="text-right">Actions</th>
+                    <th>#</th>
+                    <th>Fecha de trasacción</th>
+                    <th>Monto</th>
+                    <th>Banco</th>
+                    <th>Tipo</th>
+                    <th>Estato</th>
+                    <th *ngIf="this.dataUser.rols[0].name == 'ROLE_ADMIN'" class="text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  
-                  <tr *ngFor="let item of listUser">
-                    <td class="text-center">{{item.id}}</td>
-                    <td>{{item.fistName}} {{item.lastName}}</td>
-                    <td>{{item.country}}</td>
-                    <td>{{currency.format(item.moneyclean)}}</td>
-                    <td class="color-text">GESTIONADO</td>
-                    <td *ngIf="this.dataUser.rols[0].name == 'ROLE_ADMIN'"   class="td-actions text-right">
-                      <button 
+                  <tr *ngFor="let item of data" >
+                    <td>{{item.number}}</td>
+                    <td>{{item.date}}</td>
+                    <td>{{currency.format(item.amount)}}</td>  
+                    <th>{{item.banck}}</th>
+                    <td>{{item.type}}</td>
+                    <td >
+                      <h4 [class.transacctionTrue]="item.status === 'true'" 
+                        [class.transacctionFalse]="item.status == 'false'" 
+                        [class.transacctionNull]="item.status == ''">
+                        <div *ngIf="item.status == 'true'">
+                          GESTIONADO
+                        </div>
+                        <div *ngIf="item.status == 'false'">
+                          RECHAZADO
+                        </div>
+                        <div *ngIf="item.status == ''">
+                          EN PROCESO
+                        </div>
+                      </h4>
+                    </td>
+                    <td *ngIf="this.dataUser.rols[0].name == 'ROLE_ADMIN'" class="td-actions text-right">
+                      <!--button 
                         type="button" 
                         rel="tooltip" 
                         class="btn btn-neutral btn-sm btn-round btn-icon"
@@ -130,16 +144,20 @@
                         class="btn btn-warning btn-sm btn-round btn-icon"
                         data-target="#myModal"
                         (click)="myModal.show()"
-                        (click)="onMoneySelectUser(item)"
                         >
-                        <i class="tim-icons icon-coins"></i>
-                      </button>
-                      <!--button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
+                        <i class="tim-icons icon-pencil"></i>
+                      </button-->
+                      <button type="button" 
+                        (click)="aproved(item)"
+                        rel="tooltip" 
+                        class="btn btn-success btn-sm btn-round btn-icon">
                         <i class="tim-icons icon-check-2"></i>
                       </button>
-                      <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">
+                      <button type="button" 
+                        (click)="refused(item)" 
+                        rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">
                         <i class="tim-icons icon-simple-remove"></i>
-                      </button-->
+                      </button>
                     </td>
                   </tr>
                   
@@ -151,6 +169,12 @@
       </div>
     </div>
 </div>  
+
+
+
+
+
+
 
 
 <div
@@ -187,11 +211,6 @@
         </div>
         <div class="modal-body">
           
-          <div class="row">
-            <div class="col-2"></div>
-            <div class="col">{{fullNameUser}}</div>
-            <div class="col-2"></div>
-          </div>
 
 
 
@@ -199,27 +218,41 @@
           <form>
            
               <div class="form-row">
-                <div class="col-4">
-                    
+                <div class="col">
+                  <input type="text" class="form-control" id="InputName" aria-describedby="campo de texto para el nombre" placeholder="Nombre completo">
+                  <input type="text" class="form-control" id="InputContry" aria-describedby="Pais" placeholder="Pais">
+                  <input type="text" class="form-control" id="InputPlataform" aria-describedby="Plataforma" placeholder="Plataforma">
                 </div>
-                <div class="col-4">
-                  <label for="monto">  Monto </label>
-                  <input type="number" class="form-control" id="monto" aria-describedby="Campo de dinero" autocomplete="off" [(ngModel)]="moneyUser" placeholder="$">
-                  <span class="form-check-sign">Cantidad de dinero</span>
-                </div>
-                <div class="col-4">
-                  
+                <div class="col">
+                  <input type="email" class="form-control" id="InputEmail" aria-describedby="Campo para el correo" placeholder="Correo">
+                  <input type="text" class="form-control" id="InputAmount" aria-describedby="Cantidad de dinero" placeholder="Dinero en dolares">
                 </div>
                 <p>
-                  Puedes Asignar un monto a el usuario con el fin de que pueda gestionar dentro de la aplicación, todo se maneja en dolares ($)
+                  Far far away, behind the word mountains, far from the countries
+                  Vokalia and Consonantia, there live the blind texts. Separated
+                  they live in Bookmarksgrove right at the coast of the Semantics, a
+                  large language ocean. A small river named Duden flows by their
+                  place and supplies it with the necessary regelialia. It is a
+                  paradisematic country, in which roasted parts of sentences fly
+                  into your mouth.
                 </p>
               </div>
             
           </form>
 
+
+
+
+
+
+
+
+
+
+
         </div>
         <div class="modal-footer">
-          <button class="btn btn-default" type="button" (click)="onSaveMoney()">Guardar</button>
+          <button class="btn btn-default" type="button">Guardar</button>
           <button class="btn btn-danger" data-dismiss="modal" type="button" (click)="myModal.hide()">
             Cerrar
           </button>

@@ -33,12 +33,12 @@ export class TransactionService {
   update(transaction: any): Observable<any>{
     return this.httpClient.put<any>(`${this.URL}/update`, transaction, {headers: this.agregarAuthorizationHeader()})
   }
-/*
-  getByuser(userid: number): Observable<any>{
+
+  getByuser(userid): Observable<any>{
     let params = new HttpParams()
       .set('idUser', userid)
     return this.httpClient.get<any>(`${this.URL}/findByUser`,  {headers: this.agregarAuthorizationHeader(),params: params})
-  }*/
+  }
 
   getall(): Observable<any>{
     let params = new HttpParams()
@@ -47,7 +47,7 @@ export class TransactionService {
 
   findByManageAdmin(idManageAdmin : number): Observable<any>{
     let params = new HttpParams()
-    return this.httpClient.get<any>(`${this.URL}/findAll/${idManageAdmin}`,  {headers: this.agregarAuthorizationHeader(),params: params})
+    return this.httpClient.get<any>(`${this.URL}/findAllAdmin/${idManageAdmin}`,  {headers: this.agregarAuthorizationHeader(),params: params})
   }
   
 

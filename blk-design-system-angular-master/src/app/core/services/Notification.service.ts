@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-//import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 
 export class NotificationService {
 
- // constructor(private toastr: ToastrService) { }
+ constructor(private toastr: ToastrService) { }
 
   /**
    * @date (12-05-2020)
@@ -17,7 +17,6 @@ export class NotificationService {
    * @description Metodo par mostrar las notificaciones
    * @params { strTitle, strMessage, strType } datos para el mensaje
   **/
- /*
   alert(strTitle: string, strMessage: string, strType: string) {
 
     this.toastr.clear();
@@ -41,6 +40,6 @@ export class NotificationService {
     }
 
   }
-*/
+
   
 }

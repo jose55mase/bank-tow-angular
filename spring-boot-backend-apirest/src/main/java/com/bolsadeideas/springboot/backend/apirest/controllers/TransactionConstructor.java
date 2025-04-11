@@ -27,9 +27,14 @@ public class TransactionConstructor {
         return this.transactionService.getTransactionByUser(idUser);
     }
 
-    @GetMapping("/findAll/{idManageAdmin}")
-    public List<TransactionEntity> findAll(@PathVariable Integer idManageAdmin){
+    @GetMapping("/findAllAdmin/{idManageAdmin}")
+    public List<TransactionEntity> findAllByAdmin(@PathVariable Integer idManageAdmin){
         return this.transactionService.getAllTransaction(idManageAdmin);
+    }
+
+    @GetMapping("/findAll")
+    public List<TransactionEntity> findAll(){
+        return this.transactionService.getAll();
     }
 
 

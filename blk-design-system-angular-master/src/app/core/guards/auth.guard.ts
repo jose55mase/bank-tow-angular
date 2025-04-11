@@ -13,12 +13,10 @@ export class AuthGuard  {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      
-
       if(this.autService.isToken){
         return true;
       }else{
-        return this.router.navigate(["/login"])
+        return this.router.navigate(["/home"])
       }
     
   }

@@ -11,6 +11,11 @@ import {
 } from "@angular/core";
 import { Location } from "@angular/common";
 import { DOCUMENT } from "@angular/common";
+import { ChangeDataService } from "./core/services/changeData.service";
+import { emojisglobal, textglobal } from "./core/text-global";
+import { NotificationService } from "./core/services/Notification.service";
+import { AuthService } from "./core/services/auth.service";
+import { UserService } from "./core/services/user.service";
 
 @Component({
   selector: "app-root",
@@ -19,13 +24,24 @@ import { DOCUMENT } from "@angular/common";
 })
 export class AppComponent implements OnInit, OnDestroy {
   isCollapsed = true;
+  longin: Boolean = false;
+  objet = new Object;
+  public email: string = "";
+  public password: string = ""; 
+  public loginDisable: boolean = false;
   
   constructor(
+    private changeDataService: ChangeDataService,
+    private notificationService : NotificationService,
+    private autService: AuthService, private userService: UserService,
     private router: Router,
     private renderer: Renderer2,
     public location: Location,
     @Inject(DOCUMENT) document
   ) {}
+  ngOnDestroy(): void {
+    throw new Error("Method not implemented.");
+  }
   scrollToDownload(element: any) {
     element.scrollIntoView({ behavior: "smooth" });
   }
@@ -46,6 +62,10 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
+    this.longin = sessionStorage.getItem("btn-login") == "true" ? true : false;
+    this.changeDataService.getLoginEvenEmitter.subscribe((response) => {
+      this.longin = response;
+    })
     this.onWindowScroll(event);
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("index-page");
@@ -71,26 +91,10 @@ export class AppComponent implements OnInit, OnDestroy {
         max: 100
       }
     });
+
+    
   }
 
-  onHelpRouter(){
-    this.router.navigate(['/help'])
-  }
-  onHomeRouter(){
-    this.router.navigate(['/home'])
-  }
-  onRegisterRouter(){
-    this.router.navigate(['/register'])
-  }
-
-  onCommentsRoute(){
-    this.router.navigate(['/comments'])
-  }
-
-
-  ngOnDestroy() {
-    var body = document.getElementsByTagName("body")[0];
-    body.classList.remove("index-page");
-  }
+  
 }
 

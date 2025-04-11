@@ -10,16 +10,19 @@ import { LandingpageComponent } from "./pages/examples/landingpage/landingpage.c
 import { HomePage } from "./pages/help/help.component";
 import { CommentsPage } from "./pages/comments/comment.component";
 import { UserPage } from "./pages/user/user.component";
+import { TransactionPage } from "./pages/transaction/transaction.component";
+import { AuthGuard } from "./core/guards/auth.guard";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "home", component: IndexComponent },
   { path: "help", component: HomePage },
   { path: "comments", component: CommentsPage },
-  { path: "users", component: UserPage },
-  { path: "profile", component: ProfilepageComponent },
+  { path: "users", component: UserPage , canActivate: [AuthGuard]},
+  { path: "profile", component: ProfilepageComponent, canActivate: [AuthGuard] },
   { path: "register", component: RegisterpageComponent },
-  { path: "landing", component: LandingpageComponent }
+  { path: "transaction", component: TransactionPage, canActivate: [AuthGuard] },
+  { path: "landing", component: LandingpageComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
@@ -25,9 +25,15 @@ import { HomePage } from "./help/help.component";
 import { CommentsPage } from "./comments/comment.component";
 import { LoginPage } from "./login/login.component";
 import { UserPage } from "./user/user.component";
+import { ToastrModule } from "ngx-toastr";
+import { TransactionPage } from "./transaction/transaction.component";
+import { NavComponent } from "./components/nav/nav.component";
+
+
 
 @NgModule({
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     BrowserModule,
     FormsModule,
@@ -45,9 +51,14 @@ import { UserPage } from "./user/user.component";
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
     
+    ToastrModule.forRoot(),
+    
   ],
   declarations: [
-    IndexComponent, HomePage, CommentsPage, LoginPage, UserPage,
+    IndexComponent, HomePage, CommentsPage, LoginPage, UserPage,TransactionPage,
+
+    NavComponent,
+
     ProfilepageComponent,
     RegisterpageComponent,
     LandingpageComponent
@@ -58,6 +69,7 @@ import { UserPage } from "./user/user.component";
     RegisterpageComponent,
     LandingpageComponent, LoginPage, UserPage
   ],
-  providers: []
+  providers: [ 
+  ]
 })
 export class PagesModule {}

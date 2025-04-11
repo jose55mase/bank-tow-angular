@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -25,6 +25,9 @@ import { RegisterpageComponent } from "./pages/examples/registerpage/registerpag
 import { LandingpageComponent } from "./pages/examples/landingpage/landingpage.component";
 import { JwBootstrapSwitchNg2Module } from "jw-bootstrap-switch-ng2";
 import { LoginPage } from "./pages/login/login.component";
+import { ToastrModule } from 'ngx-toastr';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -35,7 +38,7 @@ import { LoginPage } from "./pages/login/login.component";
   ],
   imports: [
     CollapseModule.forRoot(),
-        //JwBootstrapSwitchNg2Module,
+    
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
@@ -43,6 +46,7 @@ import { LoginPage } from "./pages/login/login.component";
     AppRoutingModule,
     JwBootstrapSwitchNg2Module,
     ModalModule.forRoot(),
+    //JwBootstrapSwitchNg2Module,
     // BsDropdownModule.forRoot(),
     // ProgressbarModule.forRoot(),
     // TooltipModule.forRoot(),

@@ -64,7 +64,7 @@
   "homepage": "https://demos.creative-tim.com/blk-design-system-angular/",
   "private": false,
   "dependencies": {
-    "@angular/animations": "11.2.14",
+    "@angular/animations": "^11.2.14",
     "@angular/common": "11.2.14",
     "@angular/compiler": "11.2.14",
     "@angular/core": "11.2.14",
@@ -76,8 +76,10 @@
     "core-js": "3.8.2",
     "jw-bootstrap-switch-ng2": "2.0.5",
     "ngx-bootstrap": "6.2.0",
+    "ngx-toastr": "^13.2.1",
     "nouislider": "14.6.3",
     "rxjs": "6.6.3",
+    "sweetalert2": "^11.17.2",
     "tslib": "2.0.3",
     "zone.js": "0.11.3"
   },

@@ -7,9 +7,14 @@ import Chart from "chart.js";
 })
 export class LandingpageComponent implements OnInit, OnDestroy {
   isCollapsed = true;
+  dataProfile;
   constructor() {}
 
   ngOnInit() {
+
+    this.dataProfile = JSON.parse(localStorage.getItem("profile"))
+    console.log("Landing paga ---> ", this.dataProfile)
+
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("landing-page");
 
