@@ -1,5 +1,113 @@
-.mycontent {
-    width: 100px;
-    height: 100px;
-    background-color: #32929200 !important;
+.testimonios-container {
+  padding: 40px 20px;
+  color: white;
+  font-family: 'Arial', sans-serif;
+
+  &.no-bg {
+    background: transparent;
+  }
+
+  .intro {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 60px;
+
+    &.move-down {
+      margin-top: 100px; 
+    }
+
+    &__image img {
+      max-width: 320px;
+      border-radius: 20px;
+    }
+
+    &__text {
+      max-width: 500px;
+      text-align: center;
+
+      h2 {
+        font-size: 32px;
+        line-height: 1.2;
+        color: #ffffff;
+      }
+
+      p {
+        margin-top: 15px;
+        font-size: 16px;
+        color: #ddd;
+      }
+    }
+  }
+
+  .testimonios {
+    text-align: center;
+
+    &__titulo {
+      font-size: 28px;
+      margin-bottom: 40px;
+      color: #f5f5f5;
+    }
+
+    &__cards {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .testimonio {
+      background: #ffffff15; // MÁS CLARO que antes
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease-out forwards;
+      transition: background 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        background: #ffffff25;
+        transform: translateY(10px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      }
+
+      &__avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      &__contenido {
+        p {
+          font-size: 14px;
+          margin-bottom: 8px;
+          color: #f0f0f0;
+        }
+
+        strong {
+          color: #00d4ff;
+        }
+      }
+    }
+  }
+}
+
+// Animación
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

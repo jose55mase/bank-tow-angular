@@ -7,5 +7,5 @@ import noUiSlider from "nouislider";
   styleUrls: ["comments.component.scss"]
 })
 export class CommentsPage {
- 
+ isCollapsed=true
 }
