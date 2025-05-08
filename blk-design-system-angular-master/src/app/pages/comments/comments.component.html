@@ -1,76 +1,101 @@
-<nav-component></nav-component>
+<nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="100" id="navbar-top">
+  <div class="container">
+    <div class="navbar-translate">
+      <a class="navbar-brand" [routerLink]="['/home']" placement="bottom" tooltip="Designed and Coded by Creative Tim">
+        <span> BLK• </span>
+      </a>
+      <button aria-controls="navigation-index" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler"
+        [attr.aria-expanded]="!isCollapsed" (click)="isCollapsed = !isCollapsed" id="navigation" type="button">
+        <span class="navbar-toggler-bar bar1"> </span>
+        <span class="navbar-toggler-bar bar2"> </span>
+        <span class="navbar-toggler-bar bar3"> </span>
+      </button>
+    </div>
+    <div class="navbar-collapse justify-content-end" [collapse]="isCollapsed" id="navigation">
+      <div class="navbar-collapse-header">
+        <div class="row">
+          <div class="col-6 collapse-brand"><a> BLK• </a></div>
+          <div class="col-6 collapse-close text-right">
+            <button aria-controls="navigation-index" aria-label="Toggle navigation" class="navbar-toggler"
+              [attr.aria-expanded]="!isCollapsed" (click)="isCollapsed = !isCollapsed" id="navigation" type="button">
+              <i class="tim-icons icon-simple-remove"> </i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']"> Inicio </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/transaction']"> Transacciones </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/users']"> Usuario </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/profile']"> Perfil </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/profile']"> Documentos </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<div class="waper">
   <div class="page-header header-filter">
-  <div class="squares square1"></div>
   <div class="squares square2"></div>
   <div class="squares square3"></div>
   <div class="squares square4"></div>
   <div class="squares square5"></div>
   <div class="squares square6"></div>
   <div class="squares square7"></div>
-  <div class="container">
-      <div class="title">
-        <h3></h3>
+ 
+
+
+  
+    
+  <div class="testimonios-container no-bg">
+    <div class="intro move-down">
+      <div class="intro__image">
+        <img src="https://chargebackiinternational.com/wp-content/uploads/2025/01/Recurso-1.png" alt="Imagen de confianza">
       </div>
-      <div class="row justify-content-between align-items-center">
-        <div class="col-lg-12 col-md-12">
-          <div class="section section-tabs">
-            <div class="container">
-
-             
-              <div style="padding: 50px 20px; color: white; font-family: Arial, sans-serif;">
-                <h2 style="text-align: center; margin-bottom: 40px; color: rgb(248, 245, 245);">Testimonios de Usuarios</h2>
-                
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
-                  
-                  <!-- 1 --> 
-                  <div style="background: #ffffff10; backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-align: center;">
-                   
-                    <img src="https://randomuser.me/api/portraits/women/1.jpg" 
-                    
-                    alt="Andrea Gutiérrez"
-                    
-                    style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;">
-                    
-                    <p style="color: white;">Perdí más de $20,000 con un bróker fraudulento, pero gracias a Chargeback, recuperé mi dinero. No tengo palabras para agradecerles.</p>
-                    
-                    <strong style="color: #00d4ff;">Andrea Gutiérrez</strong>
-                  </div>
-              
-                  <!-- 2 -->
-                  <div style="background: #ffffff10; backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-align: center;">
-                   
-                    <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Laura Sánchez" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;">
-                    
-                    <p style="color: white;">Pensé que lo había perdido todo, pero con Chargeback logré recuperar lo invertido. Excelente servicio.</p>
-                    
-                    <strong style="color: #00d4ff;">Laura Sánchez</strong>
-                  
-                  </div>
-              
-                  <!-- 3 -->
-                  <div style="background: #ffffff10; backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-align: center;">
-                    
-                       <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Carlos Mejía" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;">
-                     
-                       <p style="color: white;">Gracias a Chargeback pude recuperar una inversión que parecía perdida. Recomendado 100%.</p>
-                    
-                       <strong style="color: #00d4ff;">Carlos Mejía</strong>
-                  </div>
-              
-                </div>
-              </div>
-              
-
-              
-              
-
-
-            </div>
-          </div>
-        </div>      
+      <div class="intro__text">
+        <h2>Historias reales,<br><strong>resultados reales</strong></h2>
+        <p><strong>¿Quieres ser el próximo caso de éxito?</strong> Nuestra reputación está respaldada por clientes satisfechos en todo el mundo.</p>
       </div>
     </div>
-</div>  
-</div>
+  
+    <div class="testimonios">
+      <h2 class="testimonios__titulo">Testimonios de Usuarios</h2>
+      <div class="testimonios__cards">
+  
+        <div class="testimonio fade-in">
+          <img class="testimonio__avatar" src="https://randomuser.me/api/portraits/women/1.jpg" alt="Andrea Gutiérrez">
+          <div class="testimonio__contenido">
+            <p>Perdí más de $20,000 con un bróker fraudulento, pero gracias a Chargeback, recuperé mi dinero. No tengo palabras para agradecerles.</p>
+            <strong>Andrea Gutiérrez</strong>
+          </div>
+        </div>
+  
+        <div class="testimonio fade-in" style="animation-delay: 0.2s;">
+          <img class="testimonio__avatar" src="https://randomuser.me/api/portraits/women/2.jpg" alt="Laura Sánchez">
+          <div class="testimonio__contenido">
+            <p>Pensé que lo había perdido todo, pero con Chargeback logré recuperar lo invertido. Excelente servicio.</p>
+            <strong>Laura Sánchez</strong>
+          </div>
+        </div>
+  
+        <div class="testimonio fade-in" style="animation-delay: 0.4s;">
+          <img class="testimonio__avatar" src="https://randomuser.me/api/portraits/men/1.jpg" alt="Carlos Mejía">
+          <div class="testimonio__contenido">
+            <p>Gracias a Chargeback pude recuperar una inversión que parecía perdida. Recomendado 100%.</p>
+            <strong>Carlos Mejía</strong>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
