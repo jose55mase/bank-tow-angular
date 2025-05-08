@@ -51,36 +51,38 @@ export class UserPage  implements OnInit {
 
 
   /**
-     * @Validar valida el usuario 
-     * @User 
-     * @Return user
-     */
-    public getUserData() {
-      this.dataUser =  JSON.parse(localStorage.getItem("profile"))
-      this.userService.getUser(this.dataUser.email).subscribe(
-        response => {
-          this.dataUser = response;
-          this.getUserList()
-        },
-        error => {
-          if(error.status == 401){
-            Swal.fire({
-              title: "Fin de sesion",
-              text: "La sesion a finalizado vueva a iniciar sesion",
-              icon: "warning"
-            });
-            sessionStorage.clear;
-            this.changeDataService.getLoginEvenEmitter.emit(false);
-            sessionStorage.setItem("btn-login","false")
-            this.router.navigate(['/home'])
-          }
-          if(error.status == 500){
-            this.notificationService.alert("", textglobal.error, 'error');
-          }
+   * @Validar valida el usuario 
+   * @User 
+   * @Return user
+   */
+  public getUserData() {
+    this.dataUser =  JSON.parse(localStorage.getItem("profile"))
+    this.userService.getUser(this.dataUser.email).subscribe(
+      response => {
+        this.dataUser = response;
+        console.log("Buscando la usuario ---> ", response)
+        this.getUserList()
+      },
+      error => {
+        if(error.status == 401){
+          Swal.fire({
+            title: "Fin de sesion",
+            text: "La sesion a finalizado vueva a iniciar sesion",
+            icon: "warning"
+          });
+          sessionStorage.clear;
+          this.changeDataService.getLoginEvenEmitter.emit(false);
+          sessionStorage.setItem("btn-login","false")
+          this.router.navigate(['/home'])
         }
-      )
-    }
+        if(error.status == 500){
+          this.notificationService.alert("", textglobal.error, 'error');
+        }
+      }
+    )
+  }
 
+ 
   getUserList(){
 
     if(this.dataUser.rols[0].name == "ROLE_ADMIN"){
@@ -88,6 +90,7 @@ export class UserPage  implements OnInit {
         respone => {
           this.loadProces = false;
           this.listUser = respone
+          console.log("---------- ",this.listUser);
         },
         error => {
           if(error.status == 401){
@@ -144,14 +147,8 @@ export class UserPage  implements OnInit {
       confirmButtonText: "Enviar",
     }).then((result) => {
       if (result.isConfirmed) {
-        const objet = {
-          "email": this.userSelected.email,
-          "moneyclean": this.moneyUser,
-          "status": false,
-        }
-
-
-        this.userService.update(objet).subscribe(
+        this.userSelected.moneyclean = this.moneyUser;
+        this.userService.update(this.userSelected).subscribe(
           response => {
             Swal.fire({
               title: "Éxito",
@@ -174,8 +171,49 @@ export class UserPage  implements OnInit {
             }
           }
         )
-        
       }
     });
   }
+
+  validateDocuments(item){
+    localStorage.setItem("selectedUser", JSON.stringify(item))
+    if(this.dataUser.rols[0].name == "ROLE_ADMIN"){
+      this.router.navigate(['/filesAdmin'])
+    }else{
+      this.router.navigate(['/files'])
+    }
+  }
+
+  public refuseAproved(item, status:Boolean){
+      
+    item.manage = status;
+
+    this.userService.update(item).subscribe(
+      response => {
+        Swal.fire({
+          title: "Éxito",
+          text: "Archivo rechazado",
+          icon: "success"
+        });
+      },
+      error => {
+        console.log("Error en la consulta", error)
+        if(error.status == 401){
+          Swal.fire({
+            title: "Fin de sesion",
+            text: "La sesion a finalizado vueva a iniciar sesion",
+            icon: "warning"
+          });
+          this.router.navigate(['/home'])
+        }
+        if(error.status == 500){
+          this.notificationService.alert("", textglobal.error, 'error');
+        }
+      }
+    )
+  }
+
+
+ 
+
 }

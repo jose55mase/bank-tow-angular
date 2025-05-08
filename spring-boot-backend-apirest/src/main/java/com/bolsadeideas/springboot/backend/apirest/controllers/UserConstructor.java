@@ -3,6 +3,7 @@ package com.bolsadeideas.springboot.backend.apirest.controllers;
 import com.bolsadeideas.springboot.backend.apirest.models.entity.RolEntity;
 import com.bolsadeideas.springboot.backend.apirest.models.entity.UserEntity;
 import com.bolsadeideas.springboot.backend.apirest.models.services.UsuarioService;
+import com.bolsadeideas.springboot.backend.apirest.models.services.intefaces.IRolService;
 import com.bolsadeideas.springboot.backend.apirest.models.services.intefaces.IUploadFileService;
 import com.bolsadeideas.springboot.backend.apirest.utils.RestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import java.util.Map;
 public class UserConstructor {
 
     @Autowired UsuarioService usuarioService;
+    @Autowired IRolService iRolService;
     @Autowired private IUploadFileService uploadService;
     @Autowired private BCryptPasswordEncoder passwordEncoder;
 
@@ -128,19 +130,8 @@ public class UserConstructor {
 
     @PutMapping("/update")
     public UserEntity update(@RequestBody UserEntity userEntity){
-        UserEntity cliente = usuarioService.findByemail(userEntity.getEmail());
-
-
-        cliente.setMoneyclean(userEntity.getMoneyclean());
-        cliente.setAboutme(userEntity.getAboutme());
-        cliente.setCity(userEntity.getCity());
-        cliente.setCountry(userEntity.getCountry());
-        cliente.setFistName(userEntity.getFistName());
-        cliente.setLastName(userEntity.getLastName());
-        cliente.setEmail(userEntity.getEmail());
-        cliente.setPostal(userEntity.getPostal());
-        cliente.setDocumentsAprov(userEntity.getDocumentsAprov());
-        return this.usuarioService.save(cliente);
+        //userEntity.setPassword(this.passwordEncoder.encode(userEntity.getPassword()));
+        return this.usuarioService.save(userEntity);
     }
 
     @GetMapping("/findAll")
@@ -159,8 +150,13 @@ public class UserConstructor {
         userEntity.setDocumentsAprov("{\"foto\":false,\"fromt\":false,\"back\":false}");
         userEntity.setPassword(this.passwordEncoder.encode(userEntity.getPassword()));
 
-        UserEntity user = this.usuarioService.findByemail(userEntity.getEmail());
 
+
+        UserEntity user = this.usuarioService.findByemail(userEntity.getEmail());
+        RolEntity rolUser = iRolService.get(userEntity.getRols().get(0).getId());
+        List<RolEntity> rolUserList = new ArrayList<>();
+        rolUserList.add(rolUser);
+        userEntity.setRols(rolUserList);
         if(user == null){
             user = this.usuarioService.save(userEntity);
             return new RestResponse(HttpStatus.OK.value(),

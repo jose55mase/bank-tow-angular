@@ -55,6 +55,9 @@
           <a class="nav-link" [routerLink]="['/home']"> Inicio </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/landing']"> Landing </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" [routerLink]="['/transaction']"> Transacciones </a>
         </li>
         <li class="nav-item">
@@ -63,14 +66,63 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/profile']"> Perfil </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/profile']"> Documentos </a>
-        </li>
+        
       </ul>
     </div>
   </div>
 </nav>
-<div class="wrapper">
+<div *ngIf="dataUser.manage==null" class="wrapper">
+  <div class="page-header">
+    
+
+    <img class="path2" src="assets/img/path2.png" />
+
+    <img class="shapes triangle" src="assets/img/triunghiuri.png" />
+
+    <img class="shapes wave" src="assets/img/waves.png" />
+
+    <img class="shapes squares" src="assets/img/patrat.png" />
+
+    <img class="shapes circle" src="assets/img/cercuri.png" />
+
+    <div class="content-center">
+      <div
+        class="row row-grid justify-content-between align-items-center text-left"
+      >
+        <div class="col-lg-6 col-md-6">
+          <h1 class="text-white">
+            {{dataUser.lastName}}<br />
+            <span class="text-warning"> Sin Gestionar  </span>
+          </h1>
+          <p class="text-white mb-3">
+            El usuario se encuentra en proceso de aprovación y validación para Correo y demas información.
+          </p>
+          <div class="btn-wrapper mb-3">
+            <p class="category text-warning d-inline mr-1">En proceso</p>
+            <a
+              class="btn btn-success btn-link btn-sm"
+              href="javascript:void(0)"
+            >
+              <i class="tim-icons icon-minimal-right"> </i>
+            </a>
+          </div>
+         
+        </div>
+        <div class="col-lg-4 col-md-5">
+          <img
+            alt="Circle image"
+            class="img-fluid"
+            src="assets/img/bitcoin.png"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ 
+</div>
+
+<div *ngIf="dataUser.manage==true" class="wrapper">
   <div class="page-header">
     
 
@@ -138,7 +190,7 @@
                       </div>
                       <div class="col-7 col-md-8">
                         <div class="numbers">
-                          <p class="card-title"> {{dataProfile.money}} </p>
+                          <p class="card-title"> {{dataUser.moneyclean}} </p>
                           <p></p>
                           <p class="card-category">Monto</p>
                         </div>

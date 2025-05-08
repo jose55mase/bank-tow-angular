@@ -2,12 +2,13 @@ package com.bolsadeideas.springboot.backend.apirest.models.dao;
 
 
 import com.bolsadeideas.springboot.backend.apirest.models.entity.TransactionEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface IUTransactionDao extends CrudRepository<TransactionEntity, Long> {
+public interface IUTransactionDao extends JpaRepository<TransactionEntity, Long> {
 
     @Query(value = "SELECT *  from transactionsbanck  where user_id=?1 ORDER BY id DESC"
             , nativeQuery = true)

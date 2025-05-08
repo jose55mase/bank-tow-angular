@@ -179,6 +179,12 @@ export class ProfilepageComponent implements OnInit, OnDestroy {
     this.loadtransaction = true;
     let profile = JSON.parse(localStorage.getItem("profile"))
 
+    if(this.checkoutForm.value.amount <= 0){
+      this.notificationService.alert("", textglobal.create_transaction_zero_warning, 'warning');
+      this.loadtransaction = false;
+      return
+    }
+
     if(this.checkoutForm.value.amount > profile.moneyclean){
       this.notificationService.alert("", textglobal.create_transaction_warning, 'warning');
       this.loadtransaction = false;
@@ -293,12 +299,14 @@ export class ProfilepageComponent implements OnInit, OnDestroy {
       "postal": this.profileForm.value.postal,
       "aboutme": this.profileForm.value.aboutme,
       "moneyclean": this.profileForm.value.amount,
-      "status": false,
+      "status": true,
       "foto": this.data.foto,
+      "manage": this.data.manage,
       "documentFrom": this.data.documentFrom,
       "documentBack": this.data.documentBack,
       "rols": this.data.rols,
-      "documentsAprov": this.data.documentsAprov
+      "documentsAprov": this.data.documentsAprov,
+      "password": this.data.password
     }
 
 

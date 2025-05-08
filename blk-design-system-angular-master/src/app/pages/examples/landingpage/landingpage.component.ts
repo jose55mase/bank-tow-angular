@@ -1,5 +1,11 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Router } from "@angular/router";
 import Chart from "chart.js";
+import { ChangeDataService } from "src/app/core/services/changeData.service";
+import { NotificationService } from "src/app/core/services/Notification.service";
+import { UserService } from "src/app/core/services/user.service";
+import { textglobal } from "src/app/core/text-global";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-landingpage",
@@ -8,12 +14,16 @@ import Chart from "chart.js";
 export class LandingpageComponent implements OnInit, OnDestroy {
   isCollapsed = true;
   dataProfile;
-  constructor() {}
+  dataUser;
+
+  constructor(
+    private userService : UserService, private notificationService : NotificationService,
+    private changeDataService : ChangeDataService, private router: Router) {}
 
   ngOnInit() {
 
     this.dataProfile = JSON.parse(localStorage.getItem("profile"))
-    console.log("Landing paga ---> ", this.dataProfile)
+    this.getUserData();
 
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("landing-page");
@@ -116,6 +126,39 @@ export class LandingpageComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  /**
+     * @Validar valida el usuario 
+     * @User 
+     * @Return user
+     */
+    public getUserData() {
+      this.dataUser =  JSON.parse(localStorage.getItem("profile"))
+      this.userService.getUser(this.dataUser.email).subscribe(
+        response => {
+          this.dataUser = response;
+          console.log("Buscando la usuario ---> ", response)
+        },
+        error => {
+          if(error.status == 401){
+            Swal.fire({
+              title: "Fin de sesion",
+              text: "La sesion a finalizado vueva a iniciar sesion",
+              icon: "warning"
+            });
+            sessionStorage.clear;
+            this.changeDataService.getLoginEvenEmitter.emit(false);
+            sessionStorage.setItem("btn-login","false")
+            this.router.navigate(['/home'])
+          }
+          if(error.status == 500){
+            this.notificationService.alert("", textglobal.error, 'error');
+          }
+        }
+      )
+    }
+
+
   ngOnDestroy() {
     var body = document.getElementsByTagName("body")[0];
     body.classList.remove("landing-page");

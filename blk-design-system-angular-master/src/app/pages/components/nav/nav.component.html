@@ -43,48 +43,40 @@
           </a>
         </li>
 
-        <li class="nav-item p-0">
-          <a class="nav-link" (click)="onRegisterRouter()" placement="bottom" target="_blank"
-            tooltip="ir a recupera tu dinero">
-            <i class="tim-icons icon-money-coins"></i> Recupera tu dinero
-            <p class="d-lg-none d-xl-none">Recupera Tudinero</p>
+        <div class=" dropdown show" dropdown>
+          <a aria-expanded="false" aria-haspopup="true" class=" btn btn-secondary dropdown-toggle dropdown-toggle" data-toggle="dropdown" dropdownToggle id="dropdownMenuLink" role="button">
+            ¡ Vamos ! <i *ngIf="longin" class="tim-icons icon-single-02"></i>
           </a>
-        </li>
-        
-
-        <div class="col-md-4">
-          <div *ngIf="longin; else elseBlock">
-            <button
-              class="btn btn-info"
-              data-target="#myModal2"
-              [routerLink]="['/profile']"
-            >
-            <i class="tim-icons icon-single-02"></i> Perfil
-            </button>
-          </div>
-          <ng-template #elseBlock>
-            <button
-              class="btn btn-success"
-              data-target="#myModal2"
-              (click)="myModal2.show()"
-            >
-            <i class="tim-icons icon-key-25"></i> Inicia sesion
-            </button>
-          </ng-template>
-         
-        </div>
-        <div class="col-md-4">
-          <div *ngIf="longin;">
-            <button
-              class="btn btn-primary"
-              data-target="#myModal2"
-              [routerLink]="['/home']"
+          <div aria-labelledby="dropdownMenuLink" class=" dropdown-menu" *dropdownMenu>
+            <div *ngIf="longin; else elseBlock">
+              <a   class=" dropdown-item" [routerLink]="['/profile']">
+                Perfil
+              </a>
+            </div>
+            
+            <ng-template #elseBlock>
+              <a 
+                (click)="myModal2.show()"
+                class=" dropdown-item">
+                Iniciar Sesion
+              </a>
+            </ng-template>
+            
+            <a *ngIf="longin" 
               (click)="onLongOut()"
-            >
-            <i class="tim-icons icon-lock-circle"></i> Cerrar
-            </button>
+              href="#"
+              class=" dropdown-item" >
+              Cerrar
+            </a>
+            <div class=" dropdown-divider"></div>
+            <a  
+              [routerLink]="['/register']"
+              class=" dropdown-item" >
+              Registrarse
+            </a>
           </div>
         </div>
+        
       </ul>
     </div>
   </div>
@@ -161,6 +153,7 @@
                   />
                 </label>
               </div>
+              
               <div class="text-center">
                 <button class="btn btn-wrapper my-4" type="button" (click)="onLoginSesion()">
                   Iniciar

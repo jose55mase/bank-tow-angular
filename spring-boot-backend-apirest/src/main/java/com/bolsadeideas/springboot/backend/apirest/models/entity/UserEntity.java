@@ -46,6 +46,15 @@ public class UserEntity implements Serializable {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RolEntity> rols;
 
+    private Boolean manage;
+
+    public Boolean getManage() {
+        return manage;
+    }
+
+    public void setManage(Boolean manage) {
+        this.manage = manage;
+    }
 
     public String getDocumentsAprov() {
         return documentsAprov;

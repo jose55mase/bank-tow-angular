@@ -91,6 +91,7 @@ export class NavComponent implements OnInit, OnDestroy {
     sessionStorage.clear()
     localStorage.clear()
     this.router.navigate(['/home'])
+    this.notificationService.alert("", textglobal.logOut_user_success, 'success');
     this.changeDataService.getLoginEvenEmitter.emit(false)
     sessionStorage.setItem("btn-login","false")
   }

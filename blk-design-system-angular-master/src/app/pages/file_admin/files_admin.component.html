@@ -1,0 +1,330 @@
+<nav
+  class="navbar navbar-expand-lg fixed-top navbar-transparent"
+  color-on-scroll="100"
+  id="navbar-top"
+>
+  <div class="container">
+    <div class="navbar-translate">
+      <a
+        class="navbar-brand"
+        [routerLink]="['/home']"
+        placement="bottom"
+        tooltip="Designed and Coded by Creative Tim"
+      >
+        <span> BLK• </span> 
+      </a>
+      <button
+        aria-controls="navigation-index"
+        aria-label="Toggle navigation"
+        class="navbar-toggler navbar-toggler"
+        [attr.aria-expanded]="!isCollapsed"
+        (click)="isCollapsed = !isCollapsed"
+        id="navigation"
+        type="button"
+      >
+        <span class="navbar-toggler-bar bar1"> </span>
+        <span class="navbar-toggler-bar bar2"> </span>
+        <span class="navbar-toggler-bar bar3"> </span>
+      </button>
+    </div>
+    <div
+      class="navbar-collapse justify-content-end"
+      [collapse]="isCollapsed"
+      id="navigation"
+    >
+      <div class="navbar-collapse-header">
+        <div class="row">
+          <div class="col-6 collapse-brand"><a> BLK• </a></div>
+          <div class="col-6 collapse-close text-right">
+            <button
+              aria-controls="navigation-index"
+              aria-label="Toggle navigation"
+              class="navbar-toggler"
+              [attr.aria-expanded]="!isCollapsed"
+              (click)="isCollapsed = !isCollapsed"
+              id="navigation"
+              type="button"
+            >
+              <i class="tim-icons icon-simple-remove"> </i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']"> Inicio </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/transaction']"> Transacciones </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/users']"> Usuario </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/profile']"> Perfil </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="page-header header-filter">
+  <div class="squares square1"></div>
+  <div class="squares square2"></div>
+  <div class="squares square3"></div>
+  <div class="squares square4"></div>
+  <div class="squares square5"></div>
+  <div class="squares square6"></div>
+  <div class="squares square7"></div>
+  <div class="container">
+      <div class="title">
+        <h3>Documentos</h3>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="text-center col-md-12 col-lg-8">
+          <h2 class="title">
+            Gestiona los documentos
+          </h2>
+        </div>
+      </div>
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-12 col-md-12">
+          <div class="section section-tabs">
+            <div class="container">
+              <div class="row">
+
+                <div class="col">
+                  <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                      <div *ngIf="data.foto!=null">
+                        <p *ngIf="statusDocument.foto == false" class="text-warning">
+                          <a 
+                            class="btn btn-icon btn-warning icon-warning  btn-round btn-simple mr-1"
+                            target="_blank"
+                          >
+                            <i class="fas fa-hourglass "></i>
+                            
+                          </a>
+                          EN PROCESO
+                        </p>
+                        <p *ngIf="statusDocument.foto == true" class="text-success">
+                          <a 
+                            class="btn btn-icon btn-warning icon-success  btn-round btn-simple mr-1"
+                            target="_blank"
+                          >
+                          <i class="tim-icons icon-check-2"></i> 
+                          </a>
+                          FINALIZADO
+                        </p>
+                        <p *ngIf="statusDocument.foto == 'refused'" class="text-danger">
+                          <a 
+                            class="btn btn-icon btn-warning icon-danger  btn-round btn-simple mr-1"
+                            target="_blank"
+                          >
+                          <i class="tim-icons icon-simple-remove"></i> 
+                          </a>
+                          CANCELADO
+                        </p>                       
+                      </div>
+                      <p class="card-category">Fotografia</p>
+                      <h3 class="card-title">
+                        <img  src="http://localhost:8081/api/user/uploads/img/{{data.foto}}"  width="300" height="120" class="img-thumbnail rounded"/>
+                      </h3>
+                    </div>
+                    <div *ngIf="data.foto==null">
+                      <h3>
+                        <p class="text-center">
+                          Sin foto
+                        </p>
+                      </h3>
+                    </div>
+                    <div class="card-footer">
+                      <div *ngIf="this.userCurren.authorities[0] != 'ROLE_ADMIN'" class="stats">
+                          <input style="display: none;" id="foto" type="file" (change)="selectedPicture($event)">
+                          <label for="foto" class="btn btn-danger">Selecciona un Fotografia</label>
+                          <button (click)="upluadFile()" class="btn btn-success">
+                            Guardar
+                          </button>
+                      </div>
+                      <div *ngIf="this.userCurren.authorities[0] == 'ROLE_ADMIN'">
+                        <a 
+                        (click)="documentAprove('foto')" 
+                        class="btn btn-icon btn-warning icon-success  btn-round btn-simple mr-1"
+                        target="_blank"
+                        >
+                          <i class="tim-icons icon-check-2"></i> 
+                        </a>
+                        <a 
+                          (click)="documentRefuse('foto')"
+                          class="btn btn-icon btn-warning icon-success  btn-round btn-simple mr-1"
+                          target="_blank"
+                        >
+                          <i class="tim-icons icon-simple-remove"></i> 
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col">
+                  <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                      <div *ngIf="data.documentFrom!=null">
+                        <p *ngIf="statusDocument.fromt == false" class="text-warning">
+                          <a 
+                            class="btn btn-icon btn-warning icon-warning  btn-round btn-simple mr-1"
+                            target="_blank"
+                          >
+                            <i class="fas fa-hourglass "></i>
+                            
+                          </a>
+                          EN PROCESO
+                        </p>
+                        <p *ngIf="statusDocument.fromt == true" class="text-success">
+                          <a 
+                            class="btn btn-icon btn-warning icon-success  btn-round btn-simple mr-1"
+                            target="_blank"
+                          >
+                          <i class="tim-icons icon-check-2"></i> 
+                          </a>
+                          FINALIZADO
+                        </p>
+                        <p *ngIf="statusDocument.fromt == 'refused'" class="text-danger">
+                          <a 
+                            class="btn btn-icon btn-warning icon-danger  btn-round btn-simple mr-1"
+                            target="_blank"
+                          >
+                          <i class="tim-icons icon-simple-remove"></i> 
+                          </a>
+                          CANCELADO
+                        </p>                       
+                      </div>
+                      
+                      <p class="card-category">Documento de identidad (Parte frontal)</p>
+                      <h3 class="card-title">
+                        <img src="http://localhost:8081/api/user/uploads/img/{{data.documentFrom}}"  width="300" height="120" class="img-thumbnail rounded"/>
+                      </h3>
+                      <div *ngIf="data.documentFrom==null">
+                        <h3>
+                          <p class="text-center">
+                            Sin Documento
+                          </p>
+                        </h3>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div *ngIf="this.userCurren.authorities[0] != 'ROLE_ADMIN'" class="stats">
+                        <input style="display: none;" id="documentFrom" type="file" (change)="selectedDocumentOne($event)">
+                          <label for="documentFrom" class="btn btn-danger">Selecciona el documento parte frontal</label>
+                          <button (click)="upluadFileDocumentFromt()" class="btn btn-success">
+                            Guardar
+                          </button>
+                      </div>
+                      <div *ngIf="this.userCurren.authorities[0] == 'ROLE_ADMIN'">
+                        <a 
+                        (click)="documentAprove('fromt')" 
+                        class="btn btn-icon btn-warning icon-success  btn-round btn-simple mr-1"
+                        target="_blank"
+                        >
+                          <i class="tim-icons icon-check-2"></i> 
+                        </a>
+                        <a 
+                          (click)="documentRefuse('fromt')"
+                          class="btn btn-icon btn-warning icon-success  btn-round btn-simple mr-1"
+                          target="_blank"
+                        >
+                          <i class="tim-icons icon-simple-remove"></i> 
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                      <div *ngIf="data.documentBack!=null">
+                        <p *ngIf="statusDocument.back == false" class="text-warning">
+                          <a 
+                            class="btn btn-icon btn-warning icon-warning  btn-round btn-simple mr-1"
+                            target="_blank"
+                          >
+                            <i class="fas fa-hourglass "></i>
+                          </a>
+                          EN PROCESO
+                        </p>
+                        <p *ngIf="statusDocument.back == true" class="text-success">
+                          <a 
+                            class="btn btn-icon btn-warning icon-success  btn-round btn-simple mr-1"
+                            target="_blank"
+                          >
+                          <i class="tim-icons icon-check-2"></i> 
+                          </a>
+                          FINALIZADO
+                        </p>
+                        <p *ngIf="statusDocument.back == 'refused'" class="text-danger">
+                          <a 
+                            class="btn btn-icon btn-warning icon-danger  btn-round btn-simple mr-1"
+                            target="_blank"
+                          >
+                          <i class="tim-icons icon-simple-remove"></i> 
+                          </a>
+                          CANCELADO
+                        </p>                       
+                      </div>
+                      <p class="card-category">Documento de identidad (Parte trasera)</p>
+                      <h3 class="card-title">
+                        <img  src="http://localhost:8081/api/user/uploads/img/{{data.documentBack}}"  width="300" height="120" class="img-thumbnail rounded"/>
+                      </h3>
+                    </div>
+                    <div *ngIf="data.documentBack==null">
+                      <h3>
+                        <p class="text-center">
+                          Sin Documento
+                        </p>
+                      </h3>
+                    </div>
+                    <div class="card-footer">
+                      <div *ngIf="this.userCurren.authorities[0] != 'ROLE_ADMIN'" class="stats">
+                        <input style="display: none;" id="documentBack" type="file" (change)="selectedDocumentTwo($event)">
+                        <label for="documentBack" class="btn btn-danger">Selecciona el documento parte trasera</label>
+                        <button (click)="upluadFileDocumentback()" class="btn btn-success">
+                          Guardar
+                        </button>
+                      </div>
+                      <div *ngIf="this.userCurren.authorities[0] == 'ROLE_ADMIN'">
+                        <a 
+                        (click)="documentAprove('back')" 
+                        class="btn btn-icon btn-warning icon-success  btn-round btn-simple mr-1"
+                        target="_blank"
+                        >
+                          <i class="tim-icons icon-check-2"></i> 
+                        </a>
+                        <a 
+                          (click)="documentRefuse('back')"
+                          class="btn btn-icon btn-warning icon-success  btn-round btn-simple mr-1"
+                          target="_blank"
+                        >
+                          <i class="tim-icons icon-simple-remove"></i> 
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--button mat-raised-button type="submit" class="btn btn-danger pull-right">Actulizar documentos</button-->
+            </div>
+            </div>
+          </div>
+        </div>      
+      </div>
+    </div>
+</div>  
+
+
+
+  

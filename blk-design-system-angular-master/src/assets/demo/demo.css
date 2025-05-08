@@ -260,6 +260,13 @@
     background-color: #EEEEEE;
 }*/
 
+img {
+  mask-image: linear-gradient(
+    black 80%
+    transparent
+  );
+}
+
 .social-buttons-demo .btn {
   margin-right: 5px;
   margin-bottom: 7px;

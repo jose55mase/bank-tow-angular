@@ -1,125 +1,158 @@
+
+
 <nav-component></nav-component>
+<div class="section">
+  <div class="container">
+    <div class="title">
+      <h3></h3>
+    </div>
+    <div class="row justify-content-between align-items-center">
+      <div class="col-lg-6 col-md-6">
+        <div class="section section-tabs">
+          <div class="container">
+            <div class="title">
+              <h3 class="mb-3">Registrate</h3>
+            </div>
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-12">
+                  <form class="form" [formGroup]="checkoutForm">
+                    <div
+                      class="input-group"
+                    >
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-single-02"> </i>
+                        </div>
+                      </div>
+                      <input
+                        class="form-control"
+                        placeholder="Nombre completo"
+                        formControlName="fistName"
+                        type="text"
+                      />
+                    </div>
 
-<div class="wrapper">
-  <div class="page-header">
-    <div class="page-header-image"></div>
-    <div class="content">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-8 offset-lg-0 offset-md-8">
-            <div class="square square-7" id="square7"></div>
-            <div class="square square-8" id="square8"></div>
-            <div class="card card-register">
-              <div class="card-header">
-                <img
-                  alt="Card image"
-                  class="card-img"
-                  src="assets/img/square1-blue.jpg"
-                />
+                    <div
+                      class="input-group"
+                    >
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-email-85"> </i>
+                        </div>
+                      </div>
+                      <input
+                        [class.is-invalid] = "checkoutForm.get('email').invalid"
+                        class="form-control"
+                        placeholder="Correo electronico"
+                        formControlName="email"
+                        type="email"
+                      />
+                      
+                    </div>
 
-                <h6 class="card-title">¡Recupera! </h6>
-              </div>
-              <div class="card-body">
-                <form class="form">
-                  <div
-                    class="input-group"
-                    [ngClass]="{ 'input-group-focus': focus === true }"
-                  >
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <i class="tim-icons icon-single-02"> </i>
+                    <div
+                      class="input-group"
+                    >
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-world"> </i>
+                        </div>
+                      </div>
+                      <input
+                        [class.is-invalid] = "checkoutForm.get('country').invalid"
+                        formControlName = "country"
+                        class="form-control"
+                        placeholder="Pais"
+                        type="text"
+                      />
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label> Telefono </label>
+                        <ngx-intl-tel-input
+                          formControlName = "postal" 
+                          [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+                          [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                          [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                          [selectedCountryISO]="CountryISO.India" [maxLength]="15"
+                          [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                          [numberFormat]="PhoneNumberFormat.National" name="phone">
+                      </ngx-intl-tel-input>
                       </div>
                     </div>
-                    <input
-                      class="form-control"
-                      placeholder="Nombre completo"
-                      type="text"
-                      (focus)="focus = true"
-                      (blur)="focus = false"
-                    />
-                  </div>
-                  <div
-                    class="input-group"
-                    [ngClass]="{ 'input-group-focus': focus1 === true }"
-                  >
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <i class="tim-icons icon-email-85"> </i>
+                    <label> Contraseña </label>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div
+                          class="input-group"
+                        >
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i class="tim-icons icon-single-copy-04"> </i>
+                            </div>
+                          </div>
+                          <input
+                            [class.is-invalid] = "checkoutForm.get('password').invalid"
+                            class="form-control"
+                            formControlName="password"
+                            placeholder="Contraseña"
+                            type="password"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div
+                          class="input-group"
+                        >
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i class="tim-icons icon-single-copy-04"> </i>
+                            </div>
+                          </div>
+                          <input
+                            [class.is-invalid] = "checkoutForm.get('passwordConfir').invalid"
+                            class="form-control"
+                            formControlName="passwordConfir"
+                            placeholder="Confirmar Contraseña"
+                            type="password"
+                            autocomplete="off"
+                          />
+                        </div>                        
                       </div>
                     </div>
-                    <input
-                      class="form-control"
-                      placeholder="Correo electronico"
-                      type="text"
-                      (focus)="focus1 = true"
-                      (blur)="focus1 = false"
-                    />
-                  </div>
-                  <div
-                    class="input-group"
-                    [ngClass]="{ 'input-group-focus': focus2 === true }"
-                  >
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <i class="tim-icons icon-world"> </i>
-                      </div>
-                    </div>
-                    <input
-                      class="form-control"
-                      placeholder="Pais"
-                      type="text"
-                    />
-                  </div>
-                  <div
-                    class="input-group"
-                  >
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <i class="tim-icons icon-money-coins"> </i>
-                      </div>
-                    </div>
-                    <input
-                      class="form-control"
-                      placeholder="Cantidad invertida en DOLARES "
-                      type="number"
-                    />
-                  </div>
-                  <div
-                    class="input-group"
-                  >
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <i class="tim-icons icon-single-copy-04"> </i>
-                      </div>
-                    </div>
-                    <input
-                      class="form-control"
-                      placeholder="Mensaje"
-                      type="text"
-                    />
-                  </div>
-                </form>
-              </div>
-              <div class="card-footer">
-                <a
-                  class="btn btn-danger btn-round btn-lg"
-                  href="javascript:void(0)"
-                >
-                  Enviar inforamacion
-                </a>
+                  </form>
+                  <button
+                     [disabled]="checkoutForm.get('email').invalid
+                      || loading"
+                      class="btn btn-danger btn-round btn-lg"
+                      (click)="create()"
+                    >
+                    {{loading ? "Cargando ..." : "Enviar inforamacion"}}  
+                  </button>
+                </div>
               </div>
             </div>
+
+
           </div>
         </div>
-        <div class="register-bg"></div>
-        <div class="square square-1" id="square1"></div>
-        <div class="square square-2" id="square2"></div>
-        <div class="square square-3" id="square3"></div>
-        <div class="square square-4" id="square4"></div>
-        <div class="square square-5" id="square5"></div>
-        <div class="square square-6" id="square6"></div>
+      </div>
+      <div class="col-lg-6">
+        <carousel [showIndicators]="false">
+          <slide>
+            <img style="
+              mask-image: linear-gradient(
+                black 80%
+                transparent
+              );
+            " alt="First slide" class="d-block w-100" src="assets/img/woman_lawyer.png" />
+          </slide>
+          
+        </carousel>
       </div>
     </div>
   </div>
- 
 </div>
+

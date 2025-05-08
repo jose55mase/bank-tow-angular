@@ -28,6 +28,10 @@ import { UserPage } from "./user/user.component";
 import { ToastrModule } from "ngx-toastr";
 import { TransactionPage } from "./transaction/transaction.component";
 import { NavComponent } from "./components/nav/nav.component";
+import { FilesComponent } from "./files/files.component";
+import { FilesAdminComponent } from "./file_admin/files_admin.component";
+import { NgxIntlTelInputModule } from "ngx-intl-tel-input";
+
 
 
 
@@ -50,12 +54,13 @@ import { NavComponent } from "./components/nav/nav.component";
     BsDatepickerModule.forRoot(),
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
-    
     ToastrModule.forRoot(),
+    NgxIntlTelInputModule
+    
     
   ],
   declarations: [
-    IndexComponent, HomePage, CommentsPage, LoginPage, UserPage,TransactionPage,
+    IndexComponent, HomePage, CommentsPage, LoginPage, UserPage,TransactionPage,FilesComponent, FilesAdminComponent,
 
     NavComponent,
 

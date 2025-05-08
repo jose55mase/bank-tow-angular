@@ -38,7 +38,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration config = new CorsConfiguration();
 		//config.setAllowedOrigins(Arrays.asList("https://guardianstrustbank.com"));
-		config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+		config.setAllowedOrigins(Arrays.asList("https://tangerine-taiyaki-4b5fba.netlify.app", "http://localhost:4200", "https://segurityinvestment.com"));
+		//config.setAllowedOrigins(Arrays.asList("http://localhost:8081"));
 
 		config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		config.setAllowCredentials(true);

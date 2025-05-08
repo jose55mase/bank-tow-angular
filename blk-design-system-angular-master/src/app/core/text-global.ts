@@ -1,9 +1,12 @@
 export const textglobal = {
     log_user_error: "Usuario incorrecto intenta de nuevo",
     log_user_success: "Bienvenidos",
+    logOut_user_success: "Sesion cerrada con exito",
+
 
     create_transaction_success: "transacción creada con exito",
     create_transaction_warning: "No tienen suficiente fondos para estra transacción",
+    create_transaction_zero_warning: "Debes enviar algo superior a $ 0.00",
 
     error: "Erros del sistema"
 };
