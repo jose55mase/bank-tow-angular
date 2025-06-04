@@ -90,7 +90,6 @@ export class UserPage  implements OnInit {
         respone => {
           this.loadProces = false;
           this.listUser = respone
-          console.log("---------- ",this.listUser);
         },
         error => {
           if(error.status == 401){
@@ -211,6 +210,10 @@ export class UserPage  implements OnInit {
         }
       }
     )
+  }
+
+  private createPaginator(users){
+    
   }
 
 

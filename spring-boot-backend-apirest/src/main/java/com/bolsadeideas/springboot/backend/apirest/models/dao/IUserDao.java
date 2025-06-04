@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface IUserDao extends CrudRepository<UserEntity, Long> {
     public List<UserEntity> findByAdministratorManagerOrderByIdDesc(Integer administratorManager);
+    public List<UserEntity> findAllByOrderByIdDesc();
     public UserEntity findByemail(String email);
     public UserEntity findByid(Long id);
 

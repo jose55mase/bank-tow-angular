@@ -9,8 +9,8 @@ import { map, catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TransactionService {
-  //private URL = 'https://guardianstrustbank.com:8082/api/transaction'
-  private URL = 'https://guardianstrustbank.com:8082/api/transaction'
+  //private URL = 'https://ec2-54-237-222-130.compute-1.amazonaws.com:8080/api/transaction'
+  private URL = 'https://ec2-54-237-222-130.compute-1.amazonaws.com:8080/api/transaction'
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   
   constructor(private httpClient: HttpClient, private router: Router) { }

@@ -64,7 +64,7 @@ public class UsuarioService implements IUserService, UserDetailsService {
 
     @Override
     public List<UserEntity> findAll() {
-        return (List<UserEntity>) this.userDao.findAll();
+        return (List<UserEntity>) this.userDao.findAllByOrderByIdDesc();
     }
 
     @Override

@@ -17,7 +17,7 @@ public class TransactionServiceImpl implements ITransactionService {
 
     @Override
     public List<TransactionEntity> getAll() {
-        return (List<TransactionEntity>) this.iuTransactionDao.findAll();
+        return (List<TransactionEntity>) this.iuTransactionDao.findAllByOrderByIdDesc();
     }
 
     @Transactional

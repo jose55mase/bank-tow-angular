@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface IUTransactionDao extends JpaRepository<TransactionEntity, Long> {
+    public  List<TransactionEntity> findAllByOrderByIdDesc();
 
     @Query(value = "SELECT *  from transactionsbanck  where user_id=?1 ORDER BY id DESC"
             , nativeQuery = true)

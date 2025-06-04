@@ -58,4 +58,28 @@
       max-height: 130px;
     }
   }
-  
+
+.table-container {
+  max-height: 500px; /* Scroll vertical si hay muchas filas */
+  overflow-y: auto;
+  overflow-x: auto; /* Scroll horizontal si hay muchas columnas */
+}
+
+.scrollable-table {
+  width: 100%;
+  min-width: 600px; /* Forzar scroll horizontal si necesario */
+  border-collapse: collapse;
+}
+
+.scrollable-table th,
+.scrollable-table td {
+  padding: 8px;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.scrollable-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}

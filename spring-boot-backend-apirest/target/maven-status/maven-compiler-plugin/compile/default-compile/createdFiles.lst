@@ -13,6 +13,7 @@ com\bolsadeideas\springboot\backend\apirest\models\services\intefaces\IRolServic
 com\bolsadeideas\springboot\backend\apirest\models\entity\TransactionEntity.class
 com\bolsadeideas\springboot\backend\apirest\auth\AuthorizationServerConfig.class
 com\bolsadeideas\springboot\backend\apirest\models\services\UploadFileServiceImpl.class
+com\bolsadeideas\springboot\backend\apirest\StreamLambdaHandler.class
 com\bolsadeideas\springboot\backend\apirest\models\services\intefaces\ITransactionService.class
 com\bolsadeideas\springboot\backend\apirest\auth\ResourceServerConfig.class
 com\bolsadeideas\springboot\backend\apirest\controllers\Index.class
